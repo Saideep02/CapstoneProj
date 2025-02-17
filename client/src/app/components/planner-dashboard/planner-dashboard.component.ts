@@ -58,7 +58,7 @@ export class PlannerDashboardComponent implements OnInit {
       response => {
         console.log('Event created successfully:', response);
         this.getEvents();
-        this.newEvent = { title: '', date: new Date(), location: '', description: '', status: 'Pending' ,feedback: ''};
+        this.newEvent = { title: '', date: new Date(), location: '', description: '', status: 'In Progress' ,feedback: ''};
       },
       error => {
         console.error('Event creation error:', error);

@@ -1,118 +1,140 @@
-.container {
-  display: flex;
-  flex-direction: column;
+.body
+{
+  background-color: #f1f7ff;
 }
 
-.navbar-nav.ml-auto {
-  margin-right: 50px;
+.bg-dark-blue{
+  background-color: #0a3d78 !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+
+}
+/* Background Styling */
+.dashboard-container {
+  /* background: url('assets/bg.jpg') no-repeat center center/cover; */
+  min-height: 100vh;
+  background-color: #f1f7ff;
+  /* padding-top: 60px; */
 }
 
+.nav-item{
+  padding-right: 30px;
+}
+.navbar-brand{
+  padding-left: 40px;
+}
+/* Navbar Styling */
+.navbar {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Profile Circle */
 .profile-circle {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
+  background: white;
+  color: blue;
   border-radius: 50%;
-  background-color: #007bff;
-  color: white;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
   margin-right: 10px;
 }
 
-.navbar
-{
-    margin-right: 15px;
-    margin-left:  15px;
+.heading{
+  color: #0a3d78;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f8f9fa;
-  padding: 10px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #e9ecef;
-  padding: 10px;
-  width: 100%;
-}
-
-nav h5 {
-  margin: 0;
-}
-
-nav a {
-  text-decoration: none;
-  color: #007bff;
-  padding: 10px;
-  margin: 0 5px;
-  display: inline-block;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: #0056b3;
-}
-
-form {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Glassmorphic Card */
+.glassmorphic-card {
+  /* justify-content: center; */
+  background: rgba(69, 97, 180, 0.31);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 20px;
+  /* width: 80%; */
 }
 
-form label {
-  display: block;
+.transparent-header{
+  background: none;
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons */
+/* .btn-primary, .btn-success, .btn-warning {
+  border-radius: 25px;
+  font-weight: bold;
+} */
+
+/* Modern Blue Buttons */
+.btn-modern {
+  background-color: #0a3d78; /* Dark Blue */
+  border: none;
+  width: auto;
+  /* max-width: 200px; Keep it balanced */
+  padding: 8px 20px;
+  border-radius: 30px; /* Fully rounded buttons */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #dfe8f1;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(10, 61, 120, 0.4); /* Subtle shadow */
+}
+
+/* Hover Effect */
+.btn-modern:hover {
+  background-color: #08346d; /* Slightly darker blue */
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(10, 61, 120, 0.5);
+}
+
+/* Disabled Button Look */
+.btn-modern:disabled {
+  background-color: #5a7dbf; /* Light blue */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.form-group{
   margin-bottom: 10px;
 }
 
-form input,
-form textarea,
-form select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  box-sizing: border-box;
+/* Make table content background transparent */
+.table {
+  background: transparent !important; /* Transparent background */
+  color: #0a3d78 !important; /* Dark blue text */
 }
 
-/* form button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+/* Ensure table headers and borders remain visible */
+.table th {
+  background: none !important;
+  color: white !important; 
+  font-weight: bold;
+  border-bottom: 2px solid rgba(10, 61, 120, 0.3); /* Subtle separator */
 }
 
-form button:hover {
-  background-color: #0056b3;
-} */
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+/* Table Rows */
+.table tbody tr {
+  background: transparent !important; /* Transparent rows */
+  color: #0a3d78 !important; /* Dark blue text */
 }
 
-table, th, td {
-  border: 1px solid #dee2e6;
+/* Table Borders */
+.table th, .table td {
+  border-bottom: 1px solid rgba(10, 61, 120, 0.2); /* Light blue separator */
 }
 
-th, td {
-  padding: 12px;
-  text-align: left;
+/* Remove any default Bootstrap hover background */
+.table-hover tbody tr:hover {
+  background: rgba(10, 61, 120, 0.1) !important; /* Subtle blue hover effect */
 }
-
-th {
-  background-color: #e9ecef;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+.table-striped tbody tr:nth-of-type(odd),
+.table-hover tbody tr:hover {
+  background: rgba(10, 61, 120, 0.1) !important; /* Subtle blue for contrast */
 }

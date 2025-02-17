@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, FormsModule,HttpClientModule]
 })
 export class RegisterComponent {
+  msg!:boolean;
   user: User = {
     username: '',
     email: '',
@@ -30,8 +31,7 @@ export class RegisterComponent {
       },
       error => {
         console.error('Registration error:', error);
-        alert("User Already exists");
-        // alert(error);
+         this.msg = true;
       }
     );
   }

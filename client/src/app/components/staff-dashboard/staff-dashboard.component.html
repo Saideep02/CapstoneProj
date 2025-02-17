@@ -1,56 +1,61 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-  <a class="navbar-brand" href="#">staff Dashboard</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item d-flex align-items-center">
-        <div class="profile-circle d-flex align-items-center justify-content-center">
-          <i class="bi bi-person"></i>
-        </div>
-        <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Staff Dashboard</h2>
-  <div class="card shadow-sm">
-    <div class="card-header bg-primary text-white">
-      <h3 class="mb-0">Tasks List</h3>
+<div class="dashboard-container">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue">
+    <a class="navbar-brand" href="#">Staff Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item d-flex align-items-center">
+          <div class="profile-circle">
+            <i class="bi bi-person"></i>
+          </div>
+          <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-modern" (click)="logout()">Logout</button>
+        </li>
+      </ul>
     </div>
-    <div class="card-body">
-      <table class="table table-hover">
-        <thead class="thead-light">
-          <tr>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let task of tasks">
-            <td>{{ task.description }}</td>
-            <td>
-              <span *ngIf="task.status === 'Completed'" class="text-success font-weight-bold">Completed</span>
-              <span *ngIf="task.status !== 'Completed'">{{ task.status }}</span>
-            </td>
-            <td>
-              <button *ngIf="task.status !== 'Completed'" (click)="updateTaskStatus(task.id, 'Completed')" class="btn btn-success btn-sm">Mark as Completed</button>
-              <button *ngIf="task.status !== 'In Progress'" (click)="updateTaskStatus(task.id, 'In Progress')" class="btn btn-primary btn-sm">Mark as In Progress</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <ng-template #noTasks>
-        <p>No tasks assigned.</p>
-      </ng-template>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-5">
+    <h2 class="text-center mb-4 heading">Staff Dashboard</h2>
+
+    <!-- Tasks List -->
+    <div class="card glassmorphic-card">
+      <div class="card-header transparent-header">Tasks List</div>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <td>{{ task.description }}</td>
+              <td>
+                <span *ngIf="task.status === 'Completed'" class="text-success font-weight-bold">Completed</span>
+                <span *ngIf="task.status !== 'Completed'">{{ task.status }}</span>
+              </td>
+              <td>
+                <button *ngIf="task.status !== 'Completed'" (click)="updateTaskStatus(task.id, 'Completed')" class="btn btn-modern btn-sm">
+                  Mark as Completed
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noTasks>
+          <p class="text-muted text-center">No tasks assigned.</p>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
