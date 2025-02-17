@@ -1,105 +1,71 @@
 html, body{
   height: 100%;
 }
-/* Global Styles */
 .main-container {
   background-color: #f1f7ff;
   font-family: 'Arial', sans-serif;
-  /* height: 100%; */
-  /* transform: scale(85%);
-  width: 100%;
-  transform-origin: top; */
-  
 }
 
-/* Navbar Styles */
 .navbar {
-  background-color: #0a3d78 !important; /* Dark blue navbar */
-  /* transition: all 0.3s ease-in-out; */
-  /* height: 80vh; */
+  background-color: #0a3d78 !important; 
   padding: 0%;
 }
 
-/* Adjust logo size */
 .logo {
-  height: 40px; /* Adjust as needed */
+  height: 40px;
 }
 
-/* Navbar Links */
 .navbar-nav .nav-link {
   color: white !important;
   font-weight: 500;
   font-size: 0.9rem;
-  margin-left: 15px; /* Add spacing between links */
+  margin-left: 15px; 
   margin-right: 40px;
   text-transform: uppercase;
 }
 
-/* Remove link underlines */
 .navbar-nav .nav-link:hover {
-  color: #b0c4de !important; /* Light blue on hover */
+  color: #b0c4de !important; 
   transform: scale(1.05);
 }
 
 .video{
   width: 70%;
-  /* max-width: 500px; */
-  /* height: 100%; */
   background: transparent;
-  /* object-fit:fill; */
-  /* height: 300px; */
-  /* height: auto;
-  object-fit: cover;
-  display: block; */
-  
 }
 
-/* .video-container{
-  overflow: hidden;
-} */
-
-/* form */
-
-/* Login Container */
 .login-container {
   width: 400px;
-  
-  
   max-width: 100%;
-  /* margin: auto; */
   margin-bottom: 40px;
   background:#f1f7ff;
   padding: 40px;
   border-radius: 10px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
-/* Input Fields - Line Style */
+
 .form-control {
-  border: none; /* Remove box */
-  border-bottom: 2px solid #0a3d78; /* Blue bottom border */
-  border-radius: 0; /* Remove rounded edges */
+  border: none; 
+  border-bottom: 2px solid #0a3d78;
+  border-radius: 0;
   background: transparent;
   
   outline: none;
   box-shadow: none;
   font-size: 1rem;
-  color: #0a3d78; /* Dark blue text */
+  color: #0a3d78; 
 }
 
-/* Input Focus Effect */
 .form-control:focus {
-  border-bottom: 2px solid #063b6d; /* Slightly darker blue when focused */
+  border-bottom: 2px solid #063b6d; 
   outline: none;
   box-shadow: none;
 }
 
 .form-group label{
   color: #0a3d78;
-  /* font-weight: bold; */
   font-weight: 500;
   padding-top: 10px;
 }
-/* Input Icons */
 .input-group-text {
   background: transparent;
   border: none;
@@ -107,7 +73,6 @@ html, body{
   color: #0a3d78;
 }
 
-/* Adjust Input Spacing */
 .input-group {
   align-items: center;
   padding: 6px;
@@ -118,7 +83,6 @@ html, body{
 
 .login-container h3{
   text-align: left;
-  /* font-weight: bold; */
   color: #063b6d;
   padding-bottom: 5px;
 
@@ -131,34 +95,24 @@ html, body{
 
 }
 
-/* Form Input Fields */
-/* .input-group-text {
-  background-color: #0a3d78;
-  color: white;
-  border: none;
-} */
-
 .button-container{
  padding-top: 20px;
 }
 
-/* Make buttons elongated */
 .btn-block {
   width: 100%;
-  padding: 8px; /* Increase height */
-  border-radius: 50px; /* Smooth rounded edges */
-  font-size: 1rem; /* Slightly larger font */
-  text-transform: uppercase; /* Match design */
+  padding: 8px;
+  border-radius: 50px;
+  font-size: 1rem; 
+  text-transform: uppercase; 
   font-weight: bold;
 }
 
-/* Primary Button */
 .btn-primary {
   background-color: #0a3d78;
   border: none;
 }
 
-/* Secondary Button */
 .btn-secondary {
   background-color: #0a3d78;
   border: none;
@@ -183,8 +137,6 @@ html, body{
 }
 
 
-/* About EventUs */
-/* General Section Styling */
 .event-us-section {
     padding: 60px 20px;
     background-color: #f1f7ff;
@@ -197,11 +149,9 @@ html, body{
     color: #5186CF;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-bottom: 40px;
-    /* text-transform: uppercase; */
     letter-spacing: 1px;
 }
 
-/* Card Styling */
 .event-us-card {
     background: white;
     border-radius: 15px;
@@ -224,7 +174,6 @@ html, body{
     border-bottom: 4px solid #0056b3;
 }
 
-/* Icon Styling */
 .event-us-icon img {
     width: 120px;
     height: auto;
@@ -236,7 +185,6 @@ html, body{
     transform: rotateY(360deg);
 }
 
-/* Title and Description */
 .event-us h3 {
     font-size: 1.4rem;
     font-weight: bold;
@@ -250,14 +198,12 @@ html, body{
     line-height: 1.6;
 }
 
-/* General Contact Section Styling */
  .contact-section {
    padding: 100px ;
    background-color: #f8f9fa;
    height: 100vh;
  }
  
-/* Section Titles */
  .section-title {
    font-size: 2.5rem;
    font-weight: bold;
@@ -273,7 +219,6 @@ html, body{
    margin-bottom: 15px;
  }
  
-/* Business Hours */
  .business-hours {
    font-size: 1.1rem;
    font-weight: bold;
@@ -281,7 +226,6 @@ html, body{
    margin-bottom: 25px;
  }
  
-/* Location Info */
  .location-info {
    display: flex;
    align-items: center;
@@ -301,7 +245,6 @@ html, body{
    margin: 0;
  }
  
-/* Map Container */
  .map-container {
    width: 100%;
    height: 400px;
@@ -318,7 +261,6 @@ html, body{
  
  
  
-/* Responsive */
  @media (max-width: 768px) {
 
    .about-card {

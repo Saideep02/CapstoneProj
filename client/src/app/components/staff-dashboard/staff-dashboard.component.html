@@ -1,5 +1,4 @@
 <div class="dashboard-container">
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue">
     <a class="navbar-brand" href="#">Staff Dashboard</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -20,11 +19,8 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div class="container mt-5">
     <h2 class="text-center mb-4 heading">Staff Dashboard</h2>
-
-    <!-- Tasks List -->
     <div class="card glassmorphic-card">
       <div class="card-header transparent-header">Tasks List</div>
       <div class="card-body">
@@ -46,6 +42,9 @@
               <td>
                 <button *ngIf="task.status !== 'Completed'" (click)="updateTaskStatus(task.id, 'Completed')" class="btn btn-modern btn-sm">
                   Mark as Completed
+                </button>
+                <button *ngIf="task.status == 'Completed'" (click)="updateTaskStatus(task.id, 'In Progress')" class="btn btn-modern btn-sm">
+                  Mark as Pending
                 </button>
               </td>
             </tr>

@@ -1,10 +1,21 @@
-/* Background Styling */
 .dashboard-container {
   min-height: 100vh;
   background-color: #f1f7ff;
 }
 
-/* Navbar */
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  background: white;
+  color: blue;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
 .bg-dark-blue {
   background-color: #0a3d78 !important;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
@@ -18,7 +29,6 @@
   padding-right: 30px;
 }
 
-/* Glassmorphic Card */
 .glassmorphic-card {
   background: rgba(81, 100, 159, 0.31);
   backdrop-filter: blur(10px);
@@ -29,7 +39,6 @@
   margin-bottom: 20px;
 }
 
-/* Transparent Header */
 .transparent-header {
   background: none;
   color: white;
@@ -37,7 +46,6 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Modern Buttons */
 .btn-modern {
   background-color: #0a3d78;
   border: none;
@@ -51,20 +59,17 @@
   box-shadow: 0px 4px 8px rgba(10, 61, 120, 0.4);
 }
 
-/* Hover Effect */
 .btn-modern:hover {
   background-color: #08346d;
   transform: translateY(-2px);
   box-shadow: 0px 6px 12px rgba(10, 61, 120, 0.5);
 }
 
-/* Table Styling */
 .table, .table tbody, .table tr, .table td, .table th {
   background: transparent !important;
   color: #0a3d78 !important;
 }
 
-/* Table Headers */
 .table thead {
   background: none !important;
   color: #0a3d78 !important;
@@ -72,12 +77,10 @@
   border-bottom: 2px solid rgba(10, 61, 120, 0.3);
 }
 
-/* Table Row Hover Effect */
 .table-hover tbody tr:hover {
   background: rgba(10, 61, 120, 0.1) !important;
 }
 
-/* Table Borders */
 .table th, .table td {
   border-bottom: 1px solid rgba(10, 61, 120, 0.2) !important;
 }
