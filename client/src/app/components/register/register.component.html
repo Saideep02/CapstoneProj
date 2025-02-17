@@ -59,7 +59,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
-              <input [(ngModel)]="user.username" name="username" id="username" class="form-control" required pattern="^[a-zA-Z]{3,15}$" appUniqueUsername #username="ngModel">
+              <input [(ngModel)]="user.username" name="username" id="username" class="form-control" required pattern="^[a-zA-Z0-9]{3,15}$" appUniqueUsername #username="ngModel">
               <div *ngIf="registerForm.submitted || username.touched">
                               <small *ngIf="username.errors?.['required']" class="text-danger d-block">Username is required.</small>
                               <small *ngIf="username.errors?.['pattern']" class="text-danger d-block">Minimum 3, Maximum 15 characters required.</small>

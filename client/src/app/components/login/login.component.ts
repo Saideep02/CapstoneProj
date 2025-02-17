@@ -24,15 +24,15 @@ export class LoginComponent {
 
  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
   this.loginForm = this.fb.group({
-   username: ['', [Validators.required,this.lowercaseOnly]],
+   username: ['', [Validators.required,this.format]],
    password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$')]]
   });
 }
 
 
- lowercaseOnly(control: AbstractControl): ValidationErrors | null {
-  const lowercaseRegex = /^[A-Za-z\d{3,}]+$/;
-  if (!lowercaseRegex.test(control.value)) {
+ format(control: AbstractControl): ValidationErrors | null {
+  const Regex = /^[A-Za-z0-9{3,}]+$/;
+  if (!Regex.test(control.value)) {
    return { lowercaseOnly: true };
   }
   return null;
@@ -81,4 +81,3 @@ login() {
  }
  
 }
-
