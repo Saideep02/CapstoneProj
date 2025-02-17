@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'planner-dashboard', component: PlannerDashboardComponent, canActivate: [AuthGuard] },
   { path: 'staff-dashboard', component: StaffDashboardComponent, canActivate: [AuthGuard] },
   { path: 'client-dashboard', component: ClientDashboardComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
