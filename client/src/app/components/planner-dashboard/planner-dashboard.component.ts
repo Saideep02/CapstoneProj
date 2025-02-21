@@ -3,90 +3,165 @@ import { PlannerService } from '../../services/planner.service';
 import { Event } from '../../models/event.model';
 import { Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClientService } from '../../services/client.service';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { HttpClientModule } from '@angular/common/http';
+
 import { StaffService } from '../../services/staff.service';
 import { User } from '../../models/user.model';
-
+import { Token } from '@angular/compiler';
 @Component({
   selector: 'app-planner-dashboard',
   templateUrl: './planner-dashboard.component.html',
   styleUrls: ['./planner-dashboard.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule]
+  imports: [CommonModule, FormsModule,HttpClientModule]
 })
+
 export class PlannerDashboardComponent implements OnInit {
-  // Flags to control the visibility of events and tasks
+
+  username!:string | null;
+  taskForm!:FormGroup;
   showEvents: boolean = true;
   showTasks: boolean = false;
-
-  // Arrays to hold events, tasks, and staff data
   events: Event[] = [];
   tasks: Task[] = [];
-  staffs: User[] = [];
-
-  // New event and task objects for form handling
-  newEvent: Event = { title: '', date: '', location: '', description: '', status: '' };
-  newTask: Task = { description: '', status: '', assignedStaff: '' };
-
-  // Objects for selected event and task for editing purposes
+  staffs: User[]=[];
+  newEvent: Event = {
+    title: '',
+    date: new Date(),
+    location: '',
+    description: '',
+    status: 'In Progress',
+    feedback: ''
+  };
+  newTask: Task = {
+    description: '',
+    status: 'In Progress',
+    assignedStaff:''
+  };
   selectedEvent: Event | null = null;
-  selectedTask: Task | null = null;
+  selectedTask : Task| null = null;
+  constructor(private plannerService: PlannerService,private staffService:StaffService, private router: Router) { }
 
-  // Injecting the necessary services and router
-  constructor(private plannerService: PlannerService, private staffService: StaffService, private router: Router) { }
-
-  // Lifecycle hook to fetch initial data when the component is initialized
   ngOnInit() {
+    this.username = localStorage.getItem('username');
     this.getEvents();
     this.getTasks();
     this.getStaff();
   }
 
-  // Method to create a new event
   createEvent() {
-    // Call plannerService to create the event and handle response
+    console.log(this.newEvent);
+    this.plannerService.createEvent(this.newEvent).subscribe(
+      response => {
+        console.log('Event created successfully:', response);
+        this.getEvents();
+        this.newEvent = { title: '', date: new Date(), location: '', description: '', status: 'In Progress' ,feedback: ''};
+      },
+      error => {
+        console.error('Event creation error:', error);
+      }
+    );
   }
 
-  // Method to update an existing event
   updateEvent() {
-    // Update selected event and call plannerService, handle response
+    if (this.selectedEvent && this.selectedEvent.id) {
+      this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(
+        response => {
+          console.log('Event updated successfully:', response);
+          this.getEvents();
+          this.selectedEvent = null;
+        },
+        error => {
+          console.error('Event update error:', error);
+        }
+      );
+    } else {
+      console.error('No event selected or event id is missing.');
+    }
   }
 
-  // Method to fetch all events
   getEvents() {
-    // Call plannerService to get the events and handle response
-  }
+    this.plannerService.getEvents().subscribe(
+response => {
+this.events = response;
+},
+error => {
+console.error('Error fetching events:', error);
+}
+);
+}
 
-  // Method to create a new task
-  createTask() {
-    // Call plannerService to create the task and handle response
-  }
+ updateTaskStatus(taskId: any, status: string) {
+  this.staffService.updateTaskStatus(taskId, status).subscribe(
+   (response) => {
+    console.log('Task status updates', response);
+    this.getTasks();
+   },
+   (error) => {
+    console.error('Error updating task status', error);
+   }
+  );
+  
+ }
 
-  // Method to fetch all tasks
-  getTasks() {
-    // Call plannerService to get the tasks and handle response
-  }
 
-  // Method to set up the selected event for editing
-  editEvent(event: Event) {
-    // Set selected event and toggle visibility
-  }
+createTask() {
+  console.log(this.newTask)
+this.plannerService.createTask(this.newTask).subscribe(
+response => {
+console.log('Task created successfully:', response);
+this.getTasks();
+this.newTask = { description: '', status: '',assignedStaff:'' };
+},
+error => {
+console.error('Task creation error:', error);
+}
+);
+}
 
-  // Method to fetch all staff members
-  getStaff() {
-    // Call staffService to get the staff members and handle response
-  }
+getTasks() {
+this.plannerService.getTasks().subscribe(
+response => {
+this.tasks = response;
+},
+error => {
+console.error('Error fetching tasks:', error);
+}
+);
+}
 
-  // Method to log out the user and navigate to the login page
-  logout() {
-    // Clear token and userId from local storage and navigate to login
-  }
+editEvent(event: Event) {
+this.selectedEvent = { ...event };
+this.showEvents = true;
+this.showTasks = false;
+}
+getStaff() {
+this.staffService.getStaff().subscribe(
+response => {
+this.staffs = response;
+},
+error => {
+console.error('Error fetching events:', error);
+}
+);
 
-  // Method to navigate between managing events and tasks
-  navigateTo(route: string) {
-    // Toggle visibility of events and tasks based on the route
-  }
+}
+logout() {
+localStorage.setItem('token', '');
+localStorage.setItem('userId', '');
+this.router.navigate(['/login']);
+}
+
+navigateTo(route: string) {
+if (route === 'manage-events') {
+this.showEvents = true;
+this.showTasks = false;
+} else if (route === 'manage-tasks') {
+this.showEvents = false;
+this.showTasks = true;
+}
+}
 }

@@ -3,10 +3,12 @@ package com.wecp.event_management_system.entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
+@Entity
+@Table(name = "events")
 public class Event {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -21,6 +23,8 @@ public class Event {
 
     private String feedback;
 
+    @ManyToOne
+    @JoinColumn(name = "planner_id", nullable = false)
     private EventPlanner planner;
 
     public Long getId() {

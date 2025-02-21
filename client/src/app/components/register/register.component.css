@@ -1,39 +1,131 @@
-/* Optional custom styles */
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
+.bg-container{
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+.row {
+  height: 100vh;
+  margin: 0;
 }
 
-.card-header {
-  background-color: #007bff;
-  color: white;
-  border-bottom: 1px solid #ddd;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+
+h2 {
+  color: #0a3d78;
 }
 
-.card-body {
+.testimonial-card {
+  background: transparent;
+  color:#0a3d78;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 500px;  
+  margin: auto;
+}
+
+.testimonial-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  
+}
+
+.testimonial-text {
+  font-style: italic;
+}
+
+.register-container {
   padding: 2rem;
+  color: white;
+  background: rgba(42, 53, 122, 0.74);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(6.9px);
+  border: 1px solid rgba(42, 53, 122, 0.3);
+  width: 65%;
+  font-weight: 400;
+}
+
+h3{
+  color: white;
+  padding-bottom: 20px;
+  font-weight: 400;
+  font-size:large;
+
+}
+
+
+.form-control {
+  border: none;
+  border-bottom: 2px solid white;
+  border-radius: 0;
+  background: transparent;
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group{
+  padding-bottom: 10px;
+}
+.input-group-text {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 0.8rem;
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #dfe5ec;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 50px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color:  rgba(42, 53, 122, 0.74);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.card-footer p {
-  margin-bottom: 0;
+
+.login-text{
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 20px;
+}
+.login-link {
+  color: white;
+  text-decoration: underline;
 }
 
-.card-footer a {
-  color: #007bff;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #0a3d78;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  opacity: 1;
 }
 
-.card-footer a:hover {
-  color: #0056b3;
+.text-danger{
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+}
+
+.option-text{
+  color: #0a3d78;
 }

@@ -14,14 +14,14 @@ export class StaffService {
   constructor(private http: HttpClient) { }
 
   getTasks(staffId: string): Observable<Task[]> {
-    // get data for task
+    return this.http.get<Task[]>(`${this.baseUrl}/tasks/${staffId}`);
   }
   getStaff(): Observable<User[]>{
-    // get data for users
+    return this.http.get<User[]>(`${this.baseUrl}/all`);
 
   }
   updateTaskStatus(taskId: string, status: string): Observable<any> {
-    // update task status
+    return this.http.put(`${this.baseUrl}/tasks/${taskId}?status=${status}`, {});
   }
 
 }

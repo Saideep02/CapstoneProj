@@ -1,13 +1,60 @@
-<!-- Container div with margin and padding for layout.
-Centered heading for the staff dashboard title.
-Card component to contain and style the tasks section.
-Card header with a heading for the tasks list.
-Table structure for displaying tasks in a tabular format.
-Table headers for task description, status, and available actions.
-Loop through the list of tasks using Angular's *ngFor directive.
-Display task description in a table cell.
-Display task status in a table cell.
-Conditional rendering:
-Show a button to mark the task as completed if the task status is not "completed."
-Button triggers a method to update the task status.
-If the task is already completed, display "Completed" with a green text color. -->
+<div class="dashboard-container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue">
+    <a class="navbar-brand" href="#">Staff Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item d-flex align-items-center">
+          <div class="profile-circle">
+            <i class="bi bi-person"></i>
+          </div>
+          <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-modern" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4 heading">Staff Dashboard</h2>
+    <div class="card glassmorphic-card">
+      <div class="card-header transparent-header">Tasks List</div>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <td>{{ task.description }}</td>
+              <td>
+                <span *ngIf="task.status === 'Completed'" class="text-success font-weight-bold">Completed</span>
+                <span *ngIf="task.status !== 'Completed'">{{ task.status }}</span>
+              </td>
+              <td>
+                <button *ngIf="task.status !== 'Completed'" (click)="updateTaskStatus(task.id, 'Completed')" class="btn btn-modern btn-sm">
+                  Mark as Completed
+                </button>
+                <button *ngIf="task.status == 'Completed'" (click)="updateTaskStatus(task.id, 'In Progress')" class="btn btn-modern btn-sm">
+                  Mark as Pending
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noTasks>
+          <p class="text-muted text-center">No tasks assigned.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

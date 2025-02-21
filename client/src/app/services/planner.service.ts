@@ -14,34 +14,36 @@ export class PlannerService {
   constructor(private http: HttpClient) {}
 
   createEvent(event: Event): Observable<Event> {
-  //  create event service calla
+    const plannerId = localStorage.getItem('userId');
+    return this.http.post<Event>(`${this.baseUrl}/event?plannerId=${plannerId}`, event);
   }
 
   updateEvent(event: Event, eventId: string): Observable<Event> {
-    // update event service call
+    return this.http.put<Event>(`${this.baseUrl}/event/${eventId}`, event);
   }
 
   deleteEvent(eventId: string): Observable<void> {
-    // delete event service call 
+    return this.http.delete<void>(`${this.baseUrl}/event/${eventId}`);
   }
 
   getEvents(): Observable<Event[]> {
-  //  get all events service call 
+    const plannerId = localStorage.getItem('userId');
+    return this.http.get<Event[]>(`${this.baseUrl}/events?plannerId=${plannerId}`);
   }
 
   createTask(task: Task): Observable<Task> {
-    // create new task service call 
+    return this.http.post<Task>(`${this.baseUrl}/task`, task);
   }
 
   getTasks(): Observable<Task[]> {
-    // get tasks service call 
+    return this.http.get<Task[]>(`${this.baseUrl}/tasks`);
   }
   getEventsById(eventId:string):Observable<Event>{
-// get event by id service call 
+    return this.http.get<Event>(`${this.baseUrl}/api/planner/event?eventId=${eventId}`);
 
   }
 
   assignTask(taskId: string, staffId: string): Observable<any> {
-    // assign task to staff
+    return this.http.post(`${this.baseUrl}/tasks/${taskId}/assign/${staffId}`, {});
   }
 }

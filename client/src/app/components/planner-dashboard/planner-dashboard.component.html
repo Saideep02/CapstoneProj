@@ -1,1 +1,163 @@
-<!-- show navigation with logout managment event and Assigne Staff and all those stuff html goes here  -->
+<div class="dashboard-container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue">
+    <a class="navbar-brand" href="#">Planner Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateTo('manage-events')">Manage Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateTo('manage-tasks')">Manage Tasks</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <div class="profile-circle">
+            <i class="bi bi-person"></i>
+          </div>
+          <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
+        </li>
+        <li class="nav-item">
+          <button class="btn  btn-modern" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div *ngIf="showEvents">
+      <h2 class="text-center mb-4 heading">Manage Events</h2>
+
+      <div class="card glassmorphic-card">
+        <div class="card-header transparent-header">Create Event</div>
+        <div class="card-body">
+          <form (ngSubmit)="createEvent()">
+            <div class="form-group">
+              <label>Title:</label>
+              <input [(ngModel)]="newEvent.title" name="title" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Date:</label>
+              <input [(ngModel)]="newEvent.date" name="date" type="datetime-local" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Location:</label>
+              <input [(ngModel)]="newEvent.location" name="location" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Description:</label>
+              <textarea [(ngModel)]="newEvent.description" name="description" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-modern">Create Event</button>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="selectedEvent" class="card glassmorphic-card">
+        <div class="card-header transparent-header">Edit Event</div>
+        <div class="card-body">
+          <form (ngSubmit)="updateEvent()">
+            <div class="form-group">
+              <label>Title:</label>
+              <input [(ngModel)]="selectedEvent.title" name="title" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Date:</label>
+              <input [(ngModel)]="selectedEvent.date" name="date" type="datetime-local" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Location:</label>
+              <input [(ngModel)]="selectedEvent.location" name="location" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Description:</label>
+              <textarea [(ngModel)]="selectedEvent.description" name="description" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Status:</label>
+              <select [(ngModel)]="selectedEvent.status" name="status" class="form-control" required>
+                <option value="In Progress" >Pending</option>
+                <option value="Completed" >Completed</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-modern">Update Event</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card glassmorphic-card">
+        <div class="card-header transparent-header">Event List</div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of events">
+                <td>{{ event.title }}</td>
+                <td>{{ event.date }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.status }}</td>
+                <td>
+                  <button class="btn btn-modern" (click)="editEvent(event)">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showTasks">
+      <h2 class="text-center mb-4 heading">Manage Tasks</h2>
+      <div class="card glassmorphic-card">
+        <div class="card-header transparent-header">Create Task</div>
+        <div class="card-body">
+          <form (ngSubmit)="createTask()">
+            <div class="form-group">
+              <label>Description:</label>
+              <input [(ngModel)]="newTask.description" name="description" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Assign Staff:</label>
+              <select [(ngModel)]="newTask.assignedStaff" name="role" class="form-control" required>
+                <option value="" disabled selected>Select Staff</option>
+                <option *ngFor="let staff of staffs" [ngValue]="staff">{{ staff.username }}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn  btn-modern ">Create Task</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card glassmorphic-card">
+        <div class="card-header transparent-header">Task List</div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of tasks">
+                <td>{{ task.description }}</td>
+                <td>{{ task.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

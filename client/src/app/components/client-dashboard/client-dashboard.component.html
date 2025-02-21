@@ -1,2 +1,92 @@
-<!-- create navigate bar for client -->
-<!-- list the event and give sumbit feedback option -->
+<div class="dashboard-container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue">
+    <a class="navbar-brand" href="#">Client Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item d-flex align-items-center">
+          <div class="profile-circle">
+            <i class="bi bi-person"></i>
+          </div>
+          <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-modern" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="card glassmorphic-card">
+      <div class="card-header transparent-header">Events</div>
+      <div class="card-body">
+        
+        <div class="input-group mb-3">
+          <input type="text" class="form-control search-input" placeholder="Search events" (input)="searchEvents($event)">
+        </div>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Feedback</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let event of events">
+              <td>{{ event.title }}</td>
+              <td>{{ event.date }}</td>
+              <td>{{ event.location }}</td>
+              <td>{{ event.description }}</td>
+              <td>{{ event.status }}</td>
+              <td>
+                <div *ngIf="event.status === 'Completed'; else notCompleted">
+                  <div *ngIf="!event.feedback; else feedbackPresent">
+                    <div class="input-group">
+                      <input #feedbackInput type="text" class="form-control feedback-input" placeholder="Provide feedback">
+                      <select #ratingSelect class="form-control ml-2">
+                        <option value="" disabled selected>Rate</option>
+                        <option value="Very Bad">Very Bad</option>
+                        <option value="Bad">Bad</option>
+                        <option value="Satisfactory">Satisfactory</option>
+                        <option value="Good">Good</option>
+                        <option value="Best">Best</option>
+                      </select>
+                      <div class="input-group-append">
+                        <button class="btn btn-modern" (click)="submitFeedback(feedbackInput, ratingSelect, event.id)">
+                          Submit Feedback
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #feedbackPresent>
+                    {{ event.feedback }}
+                  </ng-template>
+                </div>
+                <ng-template #notCompleted>
+                  <span class="text-muted">Feedback available upon completion</span>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

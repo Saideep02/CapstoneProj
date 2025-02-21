@@ -9,29 +9,34 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate {
 
-  // Injecting the AuthService and Router into the guard
   constructor(private authService: AuthService, private router: Router) {}
 
-  // Method to determine if a route can be activated
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    
-    // Retrieve token from local storage
-    
-    // If a token is present, check if it is expired
+      let token=null;
+      if (typeof localStorage !== 'undefined') {
+     token= localStorage.getItem('token');
+      }
     if (token) {
-      
-          // If token is not expired, allow access
-          
-            // If token is expired, redirect to login and deny access
-           
-        
-          // In case of error, redirect to login and deny access
-          
+      console.log(token);
+      return this.authService.isTokenExpired(token).pipe(
+        map(isExpired => {
+          if (!isExpired) {
+            return true;
+          } else {
+            this.router.navigate(['/login']);
+            return false;
+          }
+        }),
+        catchError(() => {
+          this.router.navigate(['/login']);
+          return of(false);
+        })
+      );
     } else {
-      // If no token is present, redirect to login and deny access
-     
+      this.router.navigate(['/login']);
+      return false;
     }
   }
 }
